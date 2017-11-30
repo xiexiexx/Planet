@@ -32,17 +32,11 @@ void merge(const vector<vector<T>>& V, vector<T>& S)
 int main()
 {
   vector<vector<int>> A = { {1, 2, 4}, {}, {2, 3, 5}, {3, 4, 6, 8} };
-  // A[0], A[1], A[2], A[3]
+  // A[0], A[1], A[2], A[3] are sorted.
   vector<int> B;
-  // k O(k) O(logk)
-  // range [L, R) L++
 
   merge(A, B);
   for (const auto& x : B)
     cout << x << endl;
-
-  cin.get();
-  cout << '\n' << "Press any key to continue...";
-  cin.get();
   return 0;
 }
