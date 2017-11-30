@@ -32,8 +32,5 @@ int main()
   merge(A.begin(), A.begin() + A.size() / 2, A.end(), B);
   for (const auto& x : B)
     cout << x << endl;
-  cin.get();
-  cout << '\n' << "Press any key to continue...";
-  cin.get();
   return 0;
 }
