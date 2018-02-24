@@ -34,15 +34,17 @@ int main()
   // 对每个桶的元素进行计数.
   for (const auto& x : V)
     ++C[x * (V.size() / E) + 1];
-  std::vector<size_t> P(C); // 位置指示器.
+  // 指示每个桶的起始位置.
+  for (size_t i = 1; i < C.size(); ++i)
+    C[i] += C[i - 1];
   // 将V中元素分配到不同的桶中.
   for (const auto& x : V)
-    B[P[x * (V.size() / E)]++] = x;
+    B[C[x * (V.size() / E)]++] = x;
   // 对不同的桶进行排序, 区间为[left, right).
   auto left = B.begin();
   for (size_t i = 1; i < C.size(); ++i)
   {
-    auto right = left + C[i];
+    auto right = B.begin() + C[i - 1];
     std::sort(left, right);
     left = right;
   }
