@@ -1,38 +1,70 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
-#include <random>
-#include <ctime>
+
+using namespace std;
+
+int recursive_cr(const vector<int>& p, size_t n)
+{
+	int r = p[0];
+	for (size_t i = 1; i <= n; ++i)
+		if (p[i] + recursive_cr(p, n - i) > r)
+			r = p[i] + recursive_cr(p, n - i);
+	return r;
+}
+
+int memoized_cr_aux(const vector<int>& p, vector<int>& r, size_t k)
+{
+	if (r[k] >= 0)
+		return r[k];
+	int opt = 0;
+	for (size_t i = 1; i <= k; ++i)
+		if (p[i] + memoized_cr_aux(p, r, k - i) > opt)
+			opt = p[i] + memoized_cr_aux(p, r, k - i);
+	r[k] = opt;
+	return opt;
+}
+
+int memoized_cr(const vector<int>& p, vector<int>& r, size_t n)
+{
+	for (size_t i = 0; i < r.size(); ++i)
+		r[i] = -1;
+	return memoized_cr_aux(p, r, n);
+}
+
+void bottom_up_cr(const vector<int>& p, vector<int>& r)
+{
+	r[0] = 0;
+	for (size_t j = 1; j < r.size(); ++j)
+	{
+		int opt = p[j];
+		for (size_t i = 1; i < j; ++i)
+			if (p[i] + r[j - i] > opt)
+				opt = p[i] + r[j - i];
+		r[j] = opt;
+	}
+}
 
 int main()
 {
-  double start_t, end_t;  // 计时器.
+	// 价格向量, 注意首项为0.
+	vector<int> p = {0, 1, 5, 8, 9, 10, 17, 17, 20, 24, 30};
+	// 收入向量.
+	vector<int> r(p.size());
 
-  // 内存分配计时开始.
-  start_t = clock();
-  std::vector<double> V(1000000000);  // 10亿个数, 需要7.5GB内存.
-  // 内存分配计时结束并输出时间.
-  end_t = clock();
-  std::cout << (end_t - start_t) / (CLOCKS_PER_SEC * 60) << " minutes" << std::endl;
+	// 递归方法计算结果并打印.
+	cout << recursive_cr(p, p.size() - 1) << endl;
 
-  // 数据赋值计时开始.
-  start_t = clock();
-  // 利用随机数生成器生成0.0到1.0之间的实数.
-  std::default_random_engine generator(time(NULL));
-  std::uniform_real_distribution<double> distribution(0.0, 1.0);
-  for (size_t i = 0; i < V.size(); ++i)
-    V[i] = distribution(generator);
-  // 数据赋值计时结束并输出时间.
-  end_t = clock();
-  std::cout << (end_t - start_t) / (CLOCKS_PER_SEC * 60) << " minutes" << std::endl;
+	// 备忘录方法计算结果和完整的收入向量并打印.
+	cout << memoized_cr(p, r, p.size() - 1) << endl;
+	for (size_t i = 0; i < r.size(); ++i)
+		cout << r[i] << ' ';
+	cout << endl;
 
-  // 排序计时开始.
-  start_t = clock();
-  // 对10亿个随机数排序, 如果用数组时间也没什么太大差别.
-  std::sort(V.begin(), V.end());
-  // 排序计时结束并输出时间.
-  end_t = clock();
-  std::cout << (end_t - start_t) / (CLOCKS_PER_SEC * 60) << " minutes" << std::endl;
+	// 自底向上方法计算完整的收入向量并打印.
+	bottom_up_cr(p, r);
+	for (size_t i = 0; i < r.size(); ++i)
+		cout << r[i] << ' ';
+	cout << endl;
 
-  return 0;
+	return 0;
 }
