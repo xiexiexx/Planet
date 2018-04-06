@@ -44,12 +44,32 @@ void bottom_up_cr(const vector<int>& p, vector<int>& r)
   }
 }
 
+void extended_bottom_up_cr(const vector<int>& p, vector<int>& r, vector<int>& s)
+{
+  for (size_t i = 0; i < s.size(); ++i)
+    s[i] = i;
+  r[0] = 0;
+  for (size_t j = 1; j < r.size(); ++j)
+  {
+    int opt = p[j];
+    for (size_t i = 1; i < j; ++i)
+      if (p[i] + r[j - i] > opt)
+      {
+        opt = p[i] + r[j - i];
+        s[j] = i;
+      }
+    r[j] = opt;
+  }
+}
+
 int main()
 {
-  // 价格向量, 注意首项为0.
+  // 价格向量, 注意首项为0, 所有元素必须非负.
   vector<int> p = {0, 1, 5, 8, 9, 10, 17, 17, 20, 24, 30};
   // 收入向量.
   vector<int> r(p.size());
+  // 解向量.
+  vector<int> s(p.size());
 
   // 递归方法计算结果并打印.
   cout << recursive_cr(p, p.size() - 1) << endl;
@@ -64,6 +84,19 @@ int main()
   for (size_t i = 0; i < r.size(); ++i)
     cout << r[i] << ' ';
   cout << endl;
+
+  // 自底向上方法计算完整的解向量并打印.
+  extended_bottom_up_cr(p, r, s);
+  for (size_t i = 0; i < s.size(); ++i)
+  {
+    size_t j = i;
+    while (j > 0)
+    {
+      cout << s[j] << ' ';
+      j -= static_cast<size_t>(s[j]);
+    }
+    cout << endl;
+  }
 
   return 0;
 }
