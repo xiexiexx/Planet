@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void print_optimal_solution(vector<vector<size_t>>& s, size_t i, size_t j)
+void print_optimal_solution(const vector<vector<size_t>>& s, size_t i, size_t j)
 {
   if (i == j)
     cout << "A" << i;
@@ -28,7 +28,7 @@ int main()
   // 二维向量, 但是下标0位置不用.
   vector<vector<int>> m(n + 1);     // 矩阵最优乘法次数.
   vector<vector<size_t>> s(n + 1);  // 最优划分位置.
-  // 二维向量每维的尺寸指定为n + 2 - i并赋初值.
+  // 二维向量每维的尺寸指定为n + 1并赋初值.
   for (size_t i = 1; i <= n; ++i)
   {
     m[i].resize(n + 1, 0);
