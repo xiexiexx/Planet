@@ -20,7 +20,7 @@ int main()
 {
   // 矩阵尺寸数组.
   vector<int> p = {30, 35, 15, 5, 10, 20, 25};
-  if (p.size() < 1)
+  if (p.size() <= 1)
     return 0;
 
   // 共有n个矩阵.
