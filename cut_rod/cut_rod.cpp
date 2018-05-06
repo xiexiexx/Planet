@@ -5,11 +5,14 @@ using namespace std;
 
 int recursive_cr(const vector<int>& p, size_t n)
 {
-  int r = p[0];
+  int opt = p[0];
   for (size_t i = 1; i <= n; ++i)
-  if (p[i] + recursive_cr(p, n - i) > r)
-    r = p[i] + recursive_cr(p, n - i);
-  return r;
+  {
+    int value = p[i] + recursive_cr(p, n - i);
+    if (value > opt)
+      opt = value;
+  }
+  return opt;
 }
 
 int memoized_cr_aux(const vector<int>& p, vector<int>& r, size_t k)
@@ -18,8 +21,11 @@ int memoized_cr_aux(const vector<int>& p, vector<int>& r, size_t k)
     return r[k];
   int opt = 0;
   for (size_t i = 1; i <= k; ++i)
-    if (p[i] + memoized_cr_aux(p, r, k - i) > opt)
-      opt = p[i] + memoized_cr_aux(p, r, k - i);
+  {
+    int value = p[i] + memoized_cr_aux(p, r, k - i);
+    if (value > opt)
+      opt = value;
+  }
   r[k] = opt;
   return opt;
 }
