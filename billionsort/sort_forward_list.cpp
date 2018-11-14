@@ -11,8 +11,8 @@ int main()
 
   // 内存分配计时开始.
   start_t = clock();
-  // 1亿个数, 需要3GB内存, 注意链表本身没有用到这么大空间. 另外, 换成list差别不大.
-  std::forward_list<float> L(100000000);
+  // 10亿个数, 需要15.1GB内存. 另外, 换成list内存会加倍, 但链表本身没用到这么大空间, 时间会长一点.
+  std::forward_list<double> L(1000000000);
   // 内存分配计时结束并输出时间.
   end_t = clock();
   std::cout << (end_t - start_t) / (CLOCKS_PER_SEC * 60) << " minutes" << std::endl;
