@@ -13,7 +13,8 @@ int main()
   std::vector<double> V(1000000000);  // 10亿个数.
   // 内存分配计时结束并输出时间.
   end_t = clock();
-  std::cout << (end_t - start_t) / (CLOCKS_PER_SEC * 60) << " minutes" << std::endl;
+  std::cout << (end_t - start_t) / (CLOCKS_PER_SEC * 60)
+            << " minutes" << std::endl;
 
   // 数据赋值计时开始.
   start_t = clock();
@@ -24,7 +25,8 @@ int main()
     V[i] = distribution(generator);
   // 数据赋值计时结束并输出时间.
   end_t = clock();
-  std::cout << (end_t - start_t) / (CLOCKS_PER_SEC * 60) << " minutes" << std::endl;
+  std::cout << (end_t - start_t) / (CLOCKS_PER_SEC * 60)
+            << " minutes" << std::endl;
 
   // 排序计时开始.
   start_t = clock();
@@ -43,7 +45,8 @@ int main()
       V[i++] = x;
   // 排序计时结束并输出时间.
   end_t = clock();
-  std::cout << (end_t - start_t) / (CLOCKS_PER_SEC * 60) << " minutes" << std::endl;
+  std::cout << (end_t - start_t) / (CLOCKS_PER_SEC * 60)
+            << " minutes" << std::endl;
 
   return 0;
 }

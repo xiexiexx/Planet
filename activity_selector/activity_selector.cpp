@@ -21,10 +21,12 @@ void activity_selector(const vector<activity>& S, vector<activity>& A)
 
 int main()
 {
-  vector<activity> S = {{6, 10}, {8, 11}, {8, 12}, {3, 9}, {5, 9}, {2, 14}, {12, 16}, {1, 4}, {3, 5}, {0, 6}, {5, 7}};
+  vector<activity> S = {{6, 10}, {8, 11}, {8, 12}, {3, 9}, {5, 9}, {2, 14},
+                        {12, 16}, {1, 4}, {3, 5}, {0, 6}, {5, 7}};
   vector<activity> A;
   // 按照结束时间排序.
-  sort(S.begin(), S.end(), [](activity a, activity b){ return a.second < b.second; });
+  sort(S.begin(), S.end(), [](activity a, activity b)
+      { return a.second < b.second; });
   activity_selector(S, A);
   for (const auto& x : A)
     cout << x.first << ", " << x.second << endl;

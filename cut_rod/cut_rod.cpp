@@ -50,7 +50,8 @@ void bottom_up_cr(const vector<int>& p, vector<int>& r)
   }
 }
 
-void extended_bottom_up_cr(const vector<int>& p, vector<int>& r, vector<int>& s)
+void extended_bottom_up_cr(const vector<int>& p, vector<int>& r,
+                           vector<int>& s)
 {
   for (size_t i = 0; i < s.size(); ++i)
     s[i] = i;
