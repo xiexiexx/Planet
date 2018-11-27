@@ -5,6 +5,8 @@
 #include <ctime>
 #include <execution>
 
+// 需要支持C++17的execution.
+
 int main()
 {
   double start_t, end_t;  // 计时器.
@@ -31,7 +33,7 @@ int main()
 
   // 排序计时开始.
   start_t = clock();
-  // 对10亿个随机数排序, 如果用数组时间也没什么太大差别.
+  // 对10亿个随机数以并行算法排序, 如果用数组时间也没什么太大差别.
   std::sort(std::execution::par, V.begin(), V.end());
   // 排序计时结束并输出时间.
   end_t = clock();
