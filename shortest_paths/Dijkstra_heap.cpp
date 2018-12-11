@@ -46,7 +46,8 @@ void Dijkstra(vector<vector<neighbor_information>>& WG, size_t s,
     x = POSITIVE_INFINITY;
   // s位置路径长度初值为0, 这样还可让s最先被找到.
   length[s] = 0;
-  // 尚未寻找到的顶点放到优先级队列里.
+  // 尚未寻找到的顶点放到优先级队列PQ里.
+  // 如果使用pair<double, size_t>, 可用greater<pair<double, size_t>>构建PQ.
   priority_queue<neighbor_information, vector<neighbor_information>,
                  cmp_neighbor_weight_greater> PQ;
   // 初始化优先级队列.
