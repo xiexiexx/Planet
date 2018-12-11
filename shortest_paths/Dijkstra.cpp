@@ -58,7 +58,7 @@ void Dijkstra(vector<vector<neighbor_information>>& WG, size_t s,
     for (const auto& neighbor : WG[u])
       if (length[u] + neighbor.weight < length[neighbor.vertex])
       {
-        // 为方便表述, 将当前所处理顶点为neighbor.v简记为v.
+        // 为方便表述, 将当前所处理顶点为neighbor.vertex简记为v.
         size_t v = neighbor.vertex;
         // 若lenght[u] + w(u, v) < length[v],
         // 则更新path[v]和length[v].
