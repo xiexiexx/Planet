@@ -42,7 +42,7 @@ void Dijkstra(vector<vector<neighbor_information>>& WG, size_t s,
   length[s] = 0;
   // 尚未寻找到的顶点集合为NS.
   set<neighbor_information, cmp_neighbor_weight> NS;
-  // 顶点在集合NS中的位置存于vertex_iter中.
+  // 顶点在集合NS中的位置存于vertex_position中.
   vector<set<neighbor_information>::iterator> vertex_position(V);
   for (size_t u = 0; u < V; u++)
     vertex_position[u] = NS.insert({u, length[u]}).first;
