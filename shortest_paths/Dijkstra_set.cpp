@@ -7,30 +7,30 @@ using namespace std;
 const double POSITIVE_INFINITY = numeric_limits<double>::max();
 
 // 按照直观习惯, 次序是先写顶点后写权重. 当然直接用pair也可以, 但不够清晰.
-struct neighbor_information {
+struct vertex_information {
   size_t vertex;
   double weight;
 };
 
-// 必须定义比较准则才能使用neighbor_information集合.
-struct cmp_neighbor_weight {
-	bool operator()(const neighbor_information& a,
-                  const neighbor_information& b) const
-	{
+// 必须定义比较准则才能使用vertex_information集合.
+struct cmp_vertex_weight {
+  bool operator()(const vertex_information& a,
+                  const vertex_information& b) const
+  {
     // 利用pair的字典序, 这样会少写很多判断, 这里以weight为主, 注意pair定义略有不同.
     using P = pair<double, size_t>;
     // 难点在于先要对weight分大于、小于和等于三种情况，等于情况下还得继续处理vertex.
     return P(a.weight, a.vertex) < P(b.weight, b.vertex);
-	}
+  }
 };
 
-void Dijkstra(vector<vector<neighbor_information>>& WG, size_t s,
+void Dijkstra(vector<vector<vertex_information>>& WG, size_t s,
               vector<size_t>& path, vector<double>& length)
 {
   size_t V = WG.size();
   // 顶点数为V, 我们需要保证path和length都是长为V的向量.
-  if (path.size() != V || length.size() != V)
-    return;
+  path.resize(V);
+  length.resize(V);
   // 初始化path向量, 其中所有元素初值均为s.
   for (auto& x : path)
     x = s;
@@ -41,16 +41,15 @@ void Dijkstra(vector<vector<neighbor_information>>& WG, size_t s,
   // s位置路径长度初值为0, 这样还可让s最先被找到.
   length[s] = 0;
   // 尚未寻找到的顶点集合为NS.
-  set<neighbor_information, cmp_neighbor_weight> NS;
+  set<vertex_information, cmp_vertex_weight> NS;
   // 顶点在集合NS中的位置存于vertex_position中.
-  vector<set<neighbor_information>::iterator> vertex_position(V);
+  vector<set<vertex_information>::iterator> vertex_position(V);
   for (size_t u = 0; u < V; u++)
     vertex_position[u] = NS.insert({u, length[u]}).first;
   for (size_t i = 0; i < V; i++)
   {
     // 每次在未找到的顶点集合中, 寻找以s为起点的路径长度最短的顶点.
-    // 设本次所找到的顶点为u, 对应路径长度为min.
-    double min = NS.begin()->weight;
+    // 设本次所找到的顶点为u, 对应路径长度已经存于length[u]所以不必记录.
     size_t u = NS.begin()->vertex;
     // u已找到, 将其从NS中删除.
     NS.erase(NS.begin());
@@ -73,7 +72,7 @@ void Dijkstra(vector<vector<neighbor_information>>& WG, size_t s,
 
 int main()
 {
-  vector<vector<neighbor_information>> WG = {
+  vector<vector<vertex_information>> WG = {
     {{1, 10}, {3, 5}},
     {{2, 1}, {3, 2}},
     {{4, 4}},
