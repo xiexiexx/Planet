@@ -51,6 +51,11 @@ void sink(vector<vertex_information>& H, size_t i, vector<size_t>& vertex_index)
   vertex_index[H[i].vertex] = i;
 }
 
+/*
+其实路径长度不仅在path中存放, 堆里也存放里一份副本.
+但是堆最终状态比较杂乱, 所以这种冗余还是有必要的.
+*/
+
 void swim(vector<vertex_information>& H, size_t i, vector<size_t>& vertex_index)
 {
   // 在H[0]处设置哨兵以终止循环, 并保存初始结点i处的数据.

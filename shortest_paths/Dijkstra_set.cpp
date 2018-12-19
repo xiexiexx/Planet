@@ -24,6 +24,11 @@ struct cmp_vertex_weight {
   }
 };
 
+/*
+实际上可以使用vector<double>直接存放路径长度, 将double*指针存入集合,
+再用基于向量首元素的相对偏移了解其顶点编号, 集合里就不用存那么多信息了.
+*/
+
 void Dijkstra(vector<vector<vertex_information>>& WG, size_t s,
               vector<size_t>& path, vector<double>& length)
 {
