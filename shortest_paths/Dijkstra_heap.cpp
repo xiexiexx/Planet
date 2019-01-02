@@ -3,7 +3,7 @@
 
 using namespace std;
 
-const double POSITIVE_INFINITY = numeric_limits<double>::max();
+const double POSITIVE_INFINITY = numeric_limits<double>::infinity();
 
 struct vertex_information {
   size_t vertex;

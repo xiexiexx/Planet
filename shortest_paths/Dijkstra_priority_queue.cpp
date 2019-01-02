@@ -4,7 +4,7 @@
 
 using namespace std;
 
-const double POSITIVE_INFINITY = numeric_limits<double>::max();
+const double POSITIVE_INFINITY = numeric_limits<double>::infinity();
 
 // 按照直观习惯, 次序是先写顶点后写权重. 当然直接用pair也可以, 但不够清晰.
 struct vertex_information {
