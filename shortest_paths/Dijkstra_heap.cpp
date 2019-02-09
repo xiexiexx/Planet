@@ -21,7 +21,7 @@ void sink(vector<vertex_information>& H, size_t i, vector<size_t>& vertex_index)
   {
     // MIN为较小结点的编号, 注意其初值为0.
     size_t MIN = 0;
-    // 右孩子较小则MAX换为右孩子编号.
+    // 右孩子较小则MIN换为右孩子编号.
     if (H[rChildNo].weight < H[MIN].weight)
       MIN = rChildNo;
     // 左孩子较小则MIN换为左孩子编号.
