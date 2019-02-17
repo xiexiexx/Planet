@@ -34,18 +34,18 @@ bool Bellman_Ford_Moore(const vector<vector<vertex_information>>& WG, size_t s,
       return false;
     Q.pop();
     // 必须提前保留这个层次的边界值, 因为有可能存在自边. 减1的目的是为了区别于当前队列的层次.
-    size_t bound = --L[u];
+    size_t bound = L[u]--;
     for (const auto& x : WG[u])
       if (path[u].weight + x.weight < path[x.vertex].weight)
       {
         // 为方便表述, 将当前所处理顶点简记为v.
         size_t v = x.vertex;
         path[v] = {u, path[u].weight + x.weight};
-        // 若v不在队列中则入队, 注意迭代层次是当前层次bound + 1的下一层次(再加1).
-        if (L[v] <= bound)
+        // 若v不在队列中则入队, 注意迭代层次是bound的下一层次.
+        if (L[v] < bound)
         {
           Q.push(v);
-          L[v] = bound + 2;
+          L[v] = bound + 1;
         }
       }
   }
@@ -72,4 +72,3 @@ int main()
   }
   return 0;
 }
-
