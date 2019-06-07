@@ -3,7 +3,6 @@
 #include <parallel/algorithm>
 #include <random>
 #include <ctime>
-#include <execution>
 
 // 需要gcc 9以上版本.
 
