@@ -5,7 +5,7 @@
 #include <ctime>
 #include <execution>
 
-// 需要支持C++17的execution.
+// 需要支持C++17的execution, 运行环境为MSVC 2017.
 
 int main()
 {
