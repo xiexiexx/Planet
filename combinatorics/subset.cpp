@@ -33,8 +33,7 @@ void subset(vector<T>& S, vector<bool>& AUX, size_t k = 0)
 
 int main()
 {
-  //vector<string> V = {"do", "care", "book", "apple"};
-  vector<int> V = {0,1,2};
+  vector<string> V = {"do", "care", "book", "apple"};
   vector<bool> AUX(V.size());
   cout << "递归生成所有子集:" << endl;
   subset(V, AUX);
