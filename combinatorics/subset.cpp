@@ -33,7 +33,8 @@ void subset(vector<T>& S, vector<bool>& AUX, size_t k = 0)
 
 int main()
 {
-  vector<string> V = {"do", "care", "book", "apple"};
+  //vector<string> V = {"do", "care", "book", "apple"};
+  vector<int> V = {0,1,2};
   vector<bool> AUX(V.size());
   cout << "递归生成所有子集:" << endl;
   subset(V, AUX);
@@ -54,6 +55,23 @@ int main()
     for (const auto& x : S)
       cout << V[x] << ' ';
     cout << " }" << endl;
+  }
+  cout << "以二进制生成所有子集:" << endl;
+  m = pow(2, V.size());
+  for (size_t i = 0; i < AUX.size(); ++i)
+    AUX[i] = false;
+  for (size_t i = 0; i < m; ++i)
+  {
+    check(V, AUX);
+    for (size_t j = 0; j < AUX.size(); ++j)
+    {
+      if (!AUX[j])
+      {
+        AUX[j] = true;
+        break;
+      }
+      AUX[j] = false;
+    }
   }
   return 0;
 }
