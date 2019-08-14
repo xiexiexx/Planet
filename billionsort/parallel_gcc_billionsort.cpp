@@ -32,9 +32,9 @@ int main()
   std::cout << (end_t - start_t) / (CLOCKS_PER_SEC * 60)
             << " minutes" << std::endl;
 
-  // 排序计时开始.
+  // 排序计时开始, 多核并行计算如果用clock()会累计每个核的计算时间, 所以改用chrono.
   const auto p_start = std::chrono::system_clock::now();
-  // 对10亿个随机数以并行算法排序, 如果用数组时间也没什么太大差别.
+  // 对10亿个随机数以并行算法排序.
   __gnu_parallel::sort(V.begin(), V.end());
   // 排序计时结束并输出时间.
   const auto p_end = std::chrono::system_clock::now();
