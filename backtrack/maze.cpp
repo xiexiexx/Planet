@@ -39,7 +39,6 @@ void backtrack(vector<point>& X)
       cout << c.x << ' ' << c.y << endl;
   }
   else
-  {
     for (int direction = 0; direction < d; ++direction)
     {
       point next = {X.back().x + delta[direction].x,
@@ -54,7 +53,6 @@ void backtrack(vector<point>& X)
           return;
       }
     }
-  }
 }
 
 int main()
