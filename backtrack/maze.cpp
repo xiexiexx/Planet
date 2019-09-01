@@ -30,25 +30,25 @@ point destination = {3, 5};
 
 // 递归形式求解迷宫, 实际上不用递归更好, 避免了参数传递, 但要保存每个点的direction当前值.
 bool solved = false;
-void backtrack(vector<point>& X)
+void backtrack(vector<point>& X, size_t k)
 {
-  if (X.back().x == destination.x && X.back().y == destination.y)
+  if (X[k - 1].x == destination.x && X[k - 1].y == destination.y)
   {
     solved = true;
-    for (const auto& c : X)
-      cout << c.x << ' ' << c.y << endl;
+    for (size_t i = 0; i < k; ++i)
+      cout << X[i].x << ' ' << X[i].y << endl;
   }
   else
   {
     for (int direction = 0; direction < d; ++direction)
     {
-      point next = {X.back().x + delta[direction].x,
-                    X.back().y + delta[direction].y};
+      point next = {X[k - 1].x + delta[direction].x,
+                    X[k - 1].y + delta[direction].y};
       if (maze[next.x][next.y] == unvisited)
       {
         maze[next.x][next.y] = visited;
-        X.push_back(next);
-        backtrack(X);
+        X[k] = next;
+        backtrack(X, k + 1);
         if (solved)
           return;
       }
@@ -59,9 +59,9 @@ void backtrack(vector<point>& X)
 int main()
 {
   vector<point> P;
-  P.reserve(m * n);                         // 提前预留容量.
-  P.push_back(source);                      // 初始点设为入口点.
+  P.resize(m * n);
+  P[0] = source;
   maze[source.x][source.y] = visited;
-  backtrack(P);
+  backtrack(P, 1);
   return 0;
 }
