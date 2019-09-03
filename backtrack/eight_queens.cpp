@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int m = 0;
+size_t m = 0;
 const int n = 8;
 void backtrack(vector<int>& X, int k = 0)
 {
