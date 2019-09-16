@@ -12,7 +12,8 @@ void merge(const vector<vector<T>>& V, vector<T>& S)
     L += V[i].size();
   S.clear();
   S.reserve(L);
-  using range = pair<typename vector<T>::const_iterator, typename vector<T>::const_iterator>;
+  using range = pair<typename vector<T>::const_iterator,
+                     typename vector<T>::const_iterator>;
   auto cmp = [](range a, range b) { return *(a.first) > *(b.first); };
   priority_queue<range, vector<range>, decltype(cmp)> PQ(cmp);
   for (size_t i = 0; i < V.size(); ++i)

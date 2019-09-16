@@ -5,8 +5,10 @@ using namespace std;
 
 // [L, M), [M, R) ==> D
 template <typename T>
-void merge(typename vector<T>::const_iterator L, typename vector<T>::const_iterator M,
-    typename vector<T>::const_iterator R, vector<T>& D)
+void merge(typename vector<T>::const_iterator L,
+           typename vector<T>::const_iterator M,
+           typename vector<T>::const_iterator R,
+           vector<T>& D)
 {
   D.resize(R - L);
   auto iA = L;

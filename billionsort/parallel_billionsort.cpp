@@ -3,6 +3,9 @@
 #include <algorithm>
 #include <random>
 #include <ctime>
+#include <execution>
+
+// 需要支持C++17的execution, 运行环境为MSVC 2017.
 
 int main()
 {
@@ -10,7 +13,7 @@ int main()
 
   // 内存分配计时开始.
   start_t = clock();
-  std::vector<double> V(1000000000);  // 10亿个数.
+  std::vector<double> V(1000000000);  // 10亿个数, 需要7.5GB内存.
   // 内存分配计时结束并输出时间.
   end_t = clock();
   std::cout << (end_t - start_t) / (CLOCKS_PER_SEC * 60)
@@ -30,28 +33,8 @@ int main()
 
   // 排序计时开始.
   start_t = clock();
-  size_t E = 10;  // 每个桶中期望元素个数.
-  std::vector<size_t> C(V.size() / E + 1, 0);     // 使用计数方法.
-  std::vector<double> B(V.size());                // 另一种形式的桶.
-  // 对每个桶的元素进行计数.
-  for (const auto& x : V)
-    ++C[x * (V.size() / E) + 1];
-  // 指示每个桶的起始位置.
-  for (size_t i = 1; i < C.size(); ++i)
-    C[i] += C[i - 1];
-  // 将V中元素分配到不同的桶中.
-  for (const auto& x : V)
-    B[C[x * (V.size() / E)]++] = x;
-  // 对不同的桶进行排序, 区间为[left, right).
-  auto left = B.begin();
-  for (size_t i = 1; i < C.size(); ++i)
-  {
-    auto right = B.begin() + C[i - 1];
-    std::sort(left, right);
-    left = right;
-  }
-  // 利用交换将数据放回原向量中.
-  V.swap(B);
+  // 对10亿个随机数以并行算法排序, 如果用数组时间也没什么太大差别.
+  std::sort(std::execution::par, V.begin(), V.end());
   // 排序计时结束并输出时间.
   end_t = clock();
   std::cout << (end_t - start_t) / (CLOCKS_PER_SEC * 60)

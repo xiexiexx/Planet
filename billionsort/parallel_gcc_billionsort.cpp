@@ -1,9 +1,12 @@
 #include <iostream>
-#include <forward_list>
-#include <list>
-#include <algorithm>
+#include <vector>
+#include <parallel/algorithm>
 #include <random>
 #include <ctime>
+#include <chrono>
+
+// 需要gcc 9以上版本并安装OpenMP.
+// 编译指令: g++-9 -std=c++17 -fopenmp -O3
 
 int main()
 {
@@ -11,8 +14,7 @@ int main()
 
   // 内存分配计时开始.
   start_t = clock();
-  // 10亿个数, 需要15.1GB内存. 另外, 换成list内存会加倍, 但链表本身没用到这么大空间, 时间会长一点.
-  std::forward_list<double> L(1000000000);
+  std::vector<double> V(1000000000);  // 10亿个数, 至少需要7.5GB内存.
   // 内存分配计时结束并输出时间.
   end_t = clock();
   std::cout << (end_t - start_t) / (CLOCKS_PER_SEC * 60)
@@ -23,20 +25,20 @@ int main()
   // 利用随机数生成器生成0.0到1.0之间的实数.
   std::default_random_engine generator(time(NULL));
   std::uniform_real_distribution<double> distribution(0.0, 1.0);
-  for (auto iter = L.begin(); iter != L.end(); ++iter)
-    *iter = distribution(generator);
+  for (size_t i = 0; i < V.size(); ++i)
+    V[i] = distribution(generator);
   // 数据赋值计时结束并输出时间.
   end_t = clock();
   std::cout << (end_t - start_t) / (CLOCKS_PER_SEC * 60)
             << " minutes" << std::endl;
 
-  // 排序计时开始.
-  start_t = clock();
-  // 对10亿个随机数排序, 如果用数组时间也没什么太大差别.
-  L.sort();
+  // 排序计时开始, 多核并行计算如果用clock()会累计每个核的计算时间, 所以改用chrono.
+  const auto p_start = std::chrono::system_clock::now();
+  // 对10亿个随机数以并行算法排序.
+  __gnu_parallel::sort(V.begin(), V.end());
   // 排序计时结束并输出时间.
-  end_t = clock();
-  std::cout << (end_t - start_t) / (CLOCKS_PER_SEC * 60)
+  const auto p_end = std::chrono::system_clock::now();
+  std::cout << (std::chrono::duration<double>(p_end - p_start).count() / 60)
             << " minutes" << std::endl;
 
   return 0;

@@ -13,10 +13,12 @@ int look_up(vector<vector<int>>& m, const vector<int>& p, size_t i, size_t j)
   else
   {
     // 此处必然有i < j, 先赋m[i][j]的初值.
-    m[i][j] = look_up(m, p, i, i) + look_up(m, p, i + 1, j) + p[i - 1] * p[i] * p[j];
+    m[i][j] = look_up(m, p, i, i) + look_up(m, p, i + 1, j)
+            + p[i - 1] * p[i] * p[j];
     for (size_t k = i + 1; k < j; ++k)
     {
-      int cost = look_up(m, p, i, k) + look_up(m, p, k + 1, j) + p[i - 1] * p[k] * p[j];
+      int cost = look_up(m, p, i, k) + look_up(m, p, k + 1, j)
+               + p[i - 1] * p[k] * p[j];
       if (cost < m[i][j])
         m[i][j] = cost;
     }

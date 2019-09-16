@@ -14,7 +14,8 @@ int main()
 {
   vector<gold> G = {{3, 120, 30}, {1, 60, 10}, {2, 100, 20}};
   // 按照价值/重量从大到小排序.
-  sort(G.begin(), G.end(), [](const gold& x, const gold& y) { return x.value / x.weight > y.value / y.weight; });
+  sort(G.begin(), G.end(), [](const gold& x, const gold& y)
+      { return x.value / x.weight > y.value / y.weight; });
   // 背包重量上限W.
   double W = 50;
   size_t m;

@@ -42,11 +42,14 @@ int main()
       m[i][i + d] = m[i][i] + m[i + 1][i + d] + p[i - 1] * p[i] * p[i + d];
       // s[i][i + d]已经赋过初值i.
       for (size_t k = i + 1; k < i + d; ++k)
-        if (m[i][k] + m[k + 1][i + d] + p[i - 1] * p[k] * p[i + d] < m[i][i + d])
+      {
+        int cost = m[i][k] + m[k + 1][i + d] + p[i - 1] * p[k] * p[i + d];
+        if (cost < m[i][i + d])
         {
-          m[i][i + d] = m[i][k] + m[k + 1][i + d] + p[i - 1] * p[k] * p[i + d];
+          m[i][i + d] = cost;
           s[i][i + d] = k;
         }
+      }
     }
   cout << "最少乘法次数: " << m[1][n] << endl;
   print_optimal_solution(s, 1, n);
