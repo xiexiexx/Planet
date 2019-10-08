@@ -41,8 +41,15 @@ size_t Rabin_Karp(const string& p, const string& t)
   size_t n = t.size();
   if (n < m || m == 0)
     return n;
-  uint64_t c, hp, ht;
+  uint64_t c = 1;
+  for (size_t i = 1; i < m; ++i)
+    c = (c * A) % L;
+  uint64_t hp = Horner(p, m);
+  uint64_t ht = Horner(t, m);
+/*
+  下列语句也可使用, 但性能略差.
   c = initialize(p, t, m, hp, ht);
+*/
   for (size_t i = 0; i <= n - m; ++i)
   {
     if (hp == ht && t.compare(i, i + m, p, 0, m) == 0)
