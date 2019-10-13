@@ -35,7 +35,7 @@ double initialize(const string& p, const string& t, size_t m,
   return power.front();
 }
 
-size_t Rabin_Karp(const string& p, const string& t)
+size_t RK(const string& p, const string& t)
 {
   size_t m = p.size();
   size_t n = t.size();
@@ -62,8 +62,8 @@ size_t Rabin_Karp(const string& p, const string& t)
 
 int main()
 {
-  cout << Rabin_Karp("Algorithm_", "Data Structures and Algorithms") << endl;
-  cout << Rabin_Karp("Algorithms", "Data Structures and Algorithms") << endl;
-  cout << Rabin_Karp("Data", "Data Structures and Algorithms") << endl;
+  cout << RK("Algorithm_", "Data Structures and Algorithms") << endl;
+  cout << RK("Algorithms", "Data Structures and Algorithms") << endl;
+  cout << RK("Data", "Data Structures and Algorithms") << endl;
   return 0;
 }
