@@ -16,13 +16,13 @@ int main()
   vector<size_t> C(m, 0);
   // 基于偏移和下标快速统计W中每个元素x的出现次数, 并存于C[z - l]中.
   for (const auto& z : W)
-  	++C[z - l];
+    ++C[z - l];
   // 根据元素i出现的次数C[i]将其逐个放回W中.
   // 注意i从小到大增长, 可保证W有序.
   size_t x = 0;
   for (size_t i = 0; i < C.size(); ++i)
-  	while (C[i]-- > 0)
-  		W[x++] = i + l;
+    while (C[i]-- > 0)
+      W[x++] = i + l;
   for (const auto& z : W)
     cout << z << ' ';
   cout << endl;
