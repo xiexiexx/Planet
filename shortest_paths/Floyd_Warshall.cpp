@@ -71,7 +71,7 @@ void print_path(const vector<vector<vertex_information>>& path,
 
 int main()
 {
-  vector<vector<double>> WG = {
+  vector<vector<double>> WG {
     {0, 3, 8, POSITIVE_INFINITY, -4},
     {POSITIVE_INFINITY, 0, POSITIVE_INFINITY, 1, 7},
     {POSITIVE_INFINITY, 4, 0, POSITIVE_INFINITY, POSITIVE_INFINITY},

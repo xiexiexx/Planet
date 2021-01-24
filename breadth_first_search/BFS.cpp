@@ -60,7 +60,7 @@ void BFS(const graph& G, size_t s)
 
 int main()
 {
-  graph G = {{}, {0, 2}, {0, 4}, {2}, {2, 3}};
+  graph G {{}, {0, 2}, {0, 4}, {2}, {2, 3}};
   BFS(G, 1);
   return 0;
 }

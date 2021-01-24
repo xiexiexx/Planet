@@ -7,7 +7,7 @@ using namespace std;
 int main()
 {
   // 向量W之中的元素取自[l, r)区间, 且r - l不是很大.
-  vector<int> W = {-4, 5, 6, 6, 6, 1};
+  vector<int> W {-4, 5, 6, 6, 6, 1};
   auto p = minmax_element(W.begin(), W.end());
   int l = *p.first;
   int r = *p.second + 1;

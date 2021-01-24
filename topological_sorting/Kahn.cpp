@@ -28,7 +28,7 @@ void Kahn(const graph& G)
 
 int main()
 {
-  graph G = {{1, 2}, {}, {4}, {2}, {}, {1}};
+  graph G {{1, 2}, {}, {4}, {2}, {}, {1}};
   Kahn(G);
   return 0;
 }

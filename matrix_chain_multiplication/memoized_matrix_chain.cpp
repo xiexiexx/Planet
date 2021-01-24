@@ -40,7 +40,7 @@ int memoized_matrix_chain(const vector<int>& p)
 int main()
 {
   // 矩阵尺寸数组.
-  vector<int> p = {30, 35, 15, 5, 10, 20, 25};
+  vector<int> p {30, 35, 15, 5, 10, 20, 25};
   cout << "最少乘法次数: " << memoized_matrix_chain(p) << endl;
   return 0;
 }

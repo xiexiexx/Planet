@@ -109,7 +109,7 @@ void Dijkstra(vector<vector<vertex_information>> & WG, size_t s,
 
 int main()
 {
-  vector<vector<vertex_information>> WG = {
+  vector<vector<vertex_information>> WG {
     {{1, 10}, {3, 5}},
     {{2, 1}, {3, 2}},
     {{4, 4}},

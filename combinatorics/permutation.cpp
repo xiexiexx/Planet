@@ -32,7 +32,7 @@ void permute(vector<T>& S, size_t k = 0)
 
 int main()
 {
-  vector<string> V = {"do", "care", "book", "apple"};
+  vector<string> V {"do", "care", "book", "apple"};
 
   cout << "递归生成所有排列:" << endl;
   permute(V);

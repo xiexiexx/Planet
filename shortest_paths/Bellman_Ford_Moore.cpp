@@ -54,7 +54,7 @@ bool Bellman_Ford_Moore(const vector<vector<vertex_information>>& WG, size_t s,
 
 int main()
 {
-  vector<vector<vertex_information>> WG = {
+  vector<vector<vertex_information>> WG {
     {{1, 6}, {3, 7}},
     {{2, 5}, {3, 8}, {4, -4}},
     {{1, -2}},

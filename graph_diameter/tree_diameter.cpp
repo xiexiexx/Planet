@@ -30,7 +30,7 @@ void find_last(const graph& G, size_t s, size_t& last, size_t& level)
 
 int main()
 {
-  graph G = {{1, 2, 3, 4}, {0}, {0}, {0}, {0}};
+  graph G {{1, 2, 3, 4}, {0}, {0}, {0}, {0}};
   size_t s = 0;
   size_t t;
   size_t level;

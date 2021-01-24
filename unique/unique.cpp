@@ -68,12 +68,12 @@ void print_all(const T& S)
 int main()
 {
   cout << "Example A: " << endl;
-  vector<int> A = {7, 2, 3, 2, 5, 1, 1};
+  vector<int> A {7, 2, 3, 2, 5, 1, 1};
   count(A);
   unique(A);
   print_all(A);
   cout << "Example B: " << endl;
-  vector<int> B = {-9};
+  vector<int> B {-9};
   count(B);
   unique(B);
   print_all(B);
@@ -83,7 +83,7 @@ int main()
   unique(C);
   print_all(C);
   cout << "Example D: " << endl;
-  vector<int> D = {1, 2, 1, 2, 1, 1, 1};
+  vector<int> D {1, 2, 1, 2, 1, 1, 1};
   vector<int> E = D;
   set<int> F;
   unordered_set<int> G;

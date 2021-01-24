@@ -41,7 +41,7 @@ void DFS(const graph& G, vector<vertex>& A)
 
 int main()
 {
-  graph G = {{1, 3}, {2}, {3}, {1}, {2, 5}, {5}};
+  graph G {{1, 3}, {2}, {3}, {1}, {2, 5}, {5}};
   vector<vertex> A(G.size());
   DFS(G, A);
   for (const auto& x : A)

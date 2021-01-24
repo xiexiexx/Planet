@@ -72,7 +72,7 @@ void extended_bottom_up_cr(const vector<int>& p, vector<int>& r,
 int main()
 {
   // 价格向量, 注意首项为0, 所有元素必须非负.
-  vector<int> p = {0, 1, 5, 8, 9, 10, 17, 17, 20, 24, 30};
+  vector<int> p {0, 1, 5, 8, 9, 10, 17, 17, 20, 24, 30};
   // 收入向量.
   vector<int> r(p.size());
   // 解向量.

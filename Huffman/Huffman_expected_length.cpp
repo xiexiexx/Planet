@@ -206,7 +206,7 @@ double expected_length(vector<double> P)
 
 int main()
 {
-  vector<double> P = {0.1, 0.1, 0.2, 0.2, 0.15, 0.15, 0.1};
+  vector<double> P {0.1, 0.1, 0.2, 0.2, 0.15, 0.15, 0.1};
   cout << wrong_expected_length(P) << endl;
   cout << correct_expected_length(P) << endl;
   cout << another_expected_length(P) << endl;

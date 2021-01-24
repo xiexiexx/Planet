@@ -27,7 +27,7 @@ void merge(typename vector<T>::const_iterator L,
 
 int main()
 {
-  vector<int> A = {3, 2, 1, 4, 5};
+  vector<int> A {3, 2, 1, 4, 5};
   sort(A.begin(), A.begin() + A.size() / 2);
   sort(A.begin() + A.size() / 2, A.end());
   vector<int> B;

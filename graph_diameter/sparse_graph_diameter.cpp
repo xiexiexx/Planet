@@ -30,7 +30,7 @@ size_t find_longest(const graph& G, size_t s)
 
 int main()
 {
-  graph G = {{1, 3}, {0, 2}, {1, 3}, {0, 2}};
+  graph G {{1, 3}, {0, 2}, {1, 3}, {0, 2}};
   size_t diameter = 0;
   for (size_t s = 0; s < G.size(); ++s)
   {

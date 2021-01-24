@@ -30,7 +30,7 @@ void depth_first_search(const graph& G, vector<vertex>& A, vector<size_t>& F,
 
 int main()
 {
-  graph G = {{1}, {2, 3}, {0}, {5}, {3}, {4}};
+  graph G {{1}, {2, 3}, {0}, {5}, {3}, {4}};
   vector<vertex> A(G.size());
   for (size_t i = 0; i < A.size(); ++i)
     A[i] = {white, {}, i};

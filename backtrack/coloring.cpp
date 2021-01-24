@@ -62,12 +62,12 @@ bool two_colorable(const graph& G, vector<size_t>& C)
 
 int main()
 {
-  graph G = {{1, 3, 4, 5},
-             {0, 2, 3},
-             {1, 3, 4},
-             {0, 1, 2, 4},
-             {0, 2, 3, 5},
-             {0, 4}};
+  graph G {{1, 3, 4, 5},
+           {0, 2, 3},
+           {1, 3, 4},
+           {0, 1, 2, 4},
+           {0, 2, 3, 5},
+           {0, 4}};
   cin >> k;
   vector<size_t> C(G.size(), k);
   vector<size_t> P(G.size());
