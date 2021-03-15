@@ -32,6 +32,7 @@ void count(vector<int>& V)
     cout << V[left] << ": " << right - left << endl;
 }
 
+// 主要基于等价关系判定, 也就是在序关系(<运算符)下的等价.
 void unique(vector<int>& V)
 {
   // 因为必须判断V是否为空, 所以提前做可以节约时间.
@@ -46,6 +47,7 @@ void unique(vector<int>& V)
   V.resize(++left);
 }
 
+// 主要是基于相等关系判定, 也就是==运算符.
 template <typename T, typename U>
 void unique_with_set(vector<T>& V, U& S)
 {
