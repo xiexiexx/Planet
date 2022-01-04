@@ -50,6 +50,17 @@ void bottom_up_cr(const vector<int>& p, vector<int>& r)
   }
 }
 
+void fast_bottom_up_cr(const vector<int>& p, vector<int>& r)
+{
+  r[0] = 0;
+  for (size_t j = 1; j < r.size(); ++j)
+    r[j] = p[j];
+  for (size_t j = 1; j < r.size(); ++j)
+    for (size_t i = 1; i < j / 2 + 1; ++i)
+      if (r[i] + r[j - i] > r[j])
+        r[j] = r[i] + r[j - i];
+}
+
 void extended_bottom_up_cr(const vector<int>& p, vector<int>& r,
                            vector<int>& s)
 {
@@ -88,6 +99,12 @@ int main()
 
   // 自底向上方法计算完整的收入向量并打印.
   bottom_up_cr(p, r);
+  for (size_t i = 0; i < r.size(); ++i)
+    cout << r[i] << ' ';
+  cout << endl;
+
+  // 使用较快的方案, 自底向上方法计算完整的收入向量并打印.
+  fast_bottom_up_cr(p, r);
   for (size_t i = 0; i < r.size(); ++i)
     cout << r[i] << ' ';
   cout << endl;
