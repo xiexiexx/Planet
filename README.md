@@ -23,3 +23,5 @@ One more thing，年费是关于星球人数以及万事万物终极答案42并�
 
 ---
 
+$\Omega(n\log{n})$
+
