@@ -23,7 +23,7 @@ def merge_simple(left_lst, right_lst):
     n_lst = [0, ] * (ln_left + ln_right)
     left_idx = right_idx = 0
     while (left_idx < ln_left) and (right_idx < ln_right):
-        if left_lst[left_idx] < right_lst[right_idx]:
+        if left_lst[left_idx] <= right_lst[right_idx]:
             n_lst[left_idx + right_idx] = left_lst[left_idx]
             left_idx += 1
         else:
@@ -58,7 +58,7 @@ def merge_dust(lst, left, mid, right):
     n_lst = [0, ] * (right - left + 1)
     left_idx, right_idx = left, mid + 1
     while (left_idx <= mid) and (right_idx <= right):
-        if lst[left_idx] < lst[right_idx]:
+        if lst[left_idx] <= lst[right_idx]:
             n_lst[left_idx - left + right_idx - mid - 1] = lst[left_idx]
             left_idx += 1
         else:
@@ -102,7 +102,7 @@ if __name__ == "__main__":
     merge_sort_dust(lst, 0, len(lst) - 1)
     # print(lst)
     print("%s's result, time cost: %s" % ("merge_sort_dust", time.time() - start))
-    
+
     # lst = [0, 4, 7, 26, 31, 3, 5, 27, 6, 6]
     # merge_dust(lst, 5, 7, 9)
     # print(lst)

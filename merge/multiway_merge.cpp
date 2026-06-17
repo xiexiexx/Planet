@@ -15,6 +15,7 @@ void merge(const vector<vector<T>>& V, vector<T>& S)
   using range = pair<typename vector<T>::const_iterator,
                      typename vector<T>::const_iterator>;
   auto cmp = [](range a, range b) { return *(a.first) > *(b.first); };
+  // 基于堆的多路归并若用于排序, 较难保证排序的稳定性.
   priority_queue<range, vector<range>, decltype(cmp)> PQ(cmp);
   for (size_t i = 0; i < V.size(); ++i)
     if (V[i].begin() != V[i].end())

@@ -14,11 +14,12 @@ void merge(typename vector<T>::const_iterator L,
   auto iA = L;
   auto iB = M;
   size_t i = 0;
+  // 考虑到后续的排序稳定性, 需要注意相等元素的处理.
   while (iA != M && iB != R)
-    if (*iA < *iB)
-      D[i++] = *iA++;
-    else
+    if (*iB < *iA)
       D[i++] = *iB++;
+    else
+      D[i++] = *iA++;
   while (iA != M)
     D[i++] = *iA++;
   while (iB != R)
